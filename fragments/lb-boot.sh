@@ -14,6 +14,10 @@ set -o pipefail
 
 source /usr/local/share/openshift-on-openstack/common_functions.sh
 
+# ensure openstack-heat-agents is installed
+retry yum -y install openstack-heat-agents ||
+    notify_failure "could not install openstack-heat-agents"
+
 # ==============================================================================
 # MAIN
 # ==============================================================================

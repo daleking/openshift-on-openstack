@@ -148,6 +148,10 @@ else
     retry yum -y install pyOpenSSL ||
         notify_failure "could not install pyOpenSSL"
 
+    # ensure openstack-heat-agents is installed
+    retry yum -y install openstack-heat-agents ||
+        notify_failure "could not install openstack-heat-agents"
+
     extra_opts=""
     # Install the EPEL repository, but leave it disabled
     # Used only to install Ansible

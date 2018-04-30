@@ -24,6 +24,10 @@ source /usr/local/share/openshift-on-openstack/common_openshift_functions.sh
 
 ifup eth1
 
+# ensure openstack-heat-agents is installed
+retry yum -y install openstack-heat-agents ||
+    notify_failure "could not install openstack-heat-agents"
+
 sudo_set_secure_path "/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin"
 sudo_enable_from_ssh
 
