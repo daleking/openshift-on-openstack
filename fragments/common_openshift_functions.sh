@@ -15,6 +15,11 @@ function docker_install_and_enable() {
         retry yum -y install docker || notify_failure "could not install docker"
     fi
     systemctl enable docker
+
+    if ! systemctl -q is-active docker.service
+    then
+        systemctl start docker
+    fi
 }
 
 
